@@ -26,11 +26,12 @@ public class BlogController {
 
     @GetMapping(value = "/index")
     public ResponseEntity<String> getIndex() {
-        return new ResponseEntity<String>("Hello, Jacolby! Lets get bootin wit SpringBoot", HttpStatus.OK);
+        return new ResponseEntity<>("Hello, Jacolby! Lets get bootin wit SpringBoot", HttpStatus.OK);
     }
 
     @GetMapping(value = "/blogs")
     public ResponseEntity<List<Blog>> getBlogs() {
-
+        List<Blog> blogs = (List<Blog>) blogService.getBlogs();
+        return new ResponseEntity<>(blogs, HttpStatus.OK);
     }
 }
