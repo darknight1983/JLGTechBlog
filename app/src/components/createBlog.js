@@ -30,8 +30,24 @@ class createBlog extends Component {
 
     onHandleSubmit = (e) => {
         e.preventDefault();
+        const { title, post } = this.state;
+        let newPost = {
+            title,
+            post
+        }
+        // Send a POST request to the microservice in order to create a new post entity
+        fetch("/api/blog", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPost),
+        }).then(response => {
+            console.log(response);
+            this.props.history.push("/")
+        });
 
-        console.log('Handling submit');
+        /* Dont forget to redirect the user after the transaction is complete*/
     }
 
     onHandleChange = (e) => {
