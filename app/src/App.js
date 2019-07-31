@@ -1,6 +1,21 @@
 import React, { Component} from 'react';
-
+import Grid from '@material-ui/core/Grid';
+import { withStyles, Card, CardContent} from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
 import Header from './components/Header'
+import BlogPic2 from './BlogPic2.jpg';
+
+
+
+const styles = {
+    img: {
+        width: '100%',
+        height: "1000px",
+    },
+    card: {
+        minWidth: '275',
+    }
+}
 
 class App extends Component {
   constructor(props) {
@@ -22,13 +37,42 @@ class App extends Component {
 
 
   render() {
+      const { classes } = this.props;
     return (
         <div className="App">
           <Header />
-          <h1>Welcome to Jacolbys Blog!</h1>
+          <Grid
+              container
+              justify={"center"}>
+              <Grid
+                  item xs={12}
+                  alignItems={"center"}
+              >
+                  <img
+                      src={BlogPic2}
+                      className={classes.img}
+                  />
+              </Grid>
+              <Grid item>
+                  <Grid container alignItems={'stretch'}>
+                      {this.state.blogs.map(blog => (
+                          <Grid item xs={4} key={blog.id}>
+                              <Card key={blog.id}>
+                                  <CardContent>
+                                      <Typography variant={"h3"}>
+                                          {blog.title}
+                                      </Typography>
+                                  </CardContent>
+                              </Card>
+                          </Grid>
+                      ))}
+                  </Grid>
+
+              </Grid>
+          </Grid>
         </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
