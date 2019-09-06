@@ -52,6 +52,17 @@ class App extends Component {
       })
   }
 
+  getSingleBlog = (id) => {
+      fetch(`/api/blog/${id}`, {
+          method: 'GET'
+      }).then(response =>
+          response.json()
+      ).then(data => {
+          console.log(data)
+          this.props.history.push(`/singleBlog/${id}`, {blogInfo: data});
+      })
+  }
+
 
 
   render() {
@@ -87,7 +98,7 @@ class App extends Component {
                                       </Typography>
                                   </CardContent>
                                   <CardActions>
-                                      <Button onClick={() => console.log("Reading more eh")}>ReadMore</Button>
+                                      <Button onClick={() => this.getSingleBlog(blog.id)}>ReadMore</Button>
                                       <Button onClick={() => this.handleDeleteClick(blog.id)}>Delete</Button>
                                   </CardActions>
                               </Card>

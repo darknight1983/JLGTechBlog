@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import createBlog  from './components/createBlog';
+import singleBlogPost from './components/singleBlogPost';
 import * as serviceWorker from './serviceWorker';
 
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Router>
             <Route path={"/"} exact component={App} />
             <Route path={"/createBlog"} exact component={createBlog}/>
+            <Route path={'/singleBlog'} component={singleBlogPost} />
         </Router>
     </MuiThemeProvider>,
     document.getElementById('root')
